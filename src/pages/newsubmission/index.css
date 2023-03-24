@@ -1,0 +1,48 @@
+:root {
+    --color1: #003145; /*app-new-sub-bg*/
+    --color2: white;
+    --color3: #f5f5f5;
+    --color4: #666666; /*celestial gray*/
+    --color5: #e3f2e5;
+    --color6: #cccccc;
+}
+
+.new-sub-cont {
+    background-color: var(--color3);
+    min-height: 100vh;
+    padding: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    background-color: var(--color2);
+    padding: 1.25rem;
+    width: 900px;
+}
+
+.upload-image {
+    display: none;
+}
+
+.upload-image-label {
+    background-color: var(--color3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed var(--color6);
+    width: 90%;
+    height: 40px;
+    font-size: 2rem;
+    padding: 2rem;
+    color: var(--color6);
+}
+
+.form-date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-date > * {
+    width: 45%;
+}
