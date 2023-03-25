@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Container from "react-bootstrap/esm/Container";
 
-import "./index.css";
+import styles from "./index.module.css";
 
 import Form from "react-bootstrap/Form";
 import { RiImageAddLine } from "react-icons/ri";
@@ -62,12 +62,12 @@ const Newsubmission = () => {
     }
 
     return (
-        <Container fluid={true} className="new-sub-cont">
-            <Form className="form" onSubmit={submit}>
-                <h3>New Hackathon Submission</h3>
+        <Container fluid={true} className={styles.new_sub_cont}>
+            <Form className={styles.form} onSubmit={submit}>
+                <h3 className={styles.h3}>New Hackathon Submission</h3>
                 <br />
-                <Form.Group className="mb-3">
-                    <Form.Label>Title</Form.Label>
+                <Form.Group className={styles.form_group}>
+                    <Form.Label className={styles.label}>Title</Form.Label>
                     <Form.Control
                         placeholder="Title of your submission"
                         onChange={onchange}
@@ -75,8 +75,8 @@ const Newsubmission = () => {
                         name="title"
                     />
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Summary</Form.Label>
+                <Form.Group className={styles.form_group}>
+                    <Form.Label className={styles.label}>Summary</Form.Label>
                     <Form.Control
                         placeholder="A short summary of your submission (this will be visible with your submission)"
                         maxLength={150}
@@ -86,8 +86,10 @@ const Newsubmission = () => {
                         name="summary"
                     />
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Description</Form.Label>
+                <Form.Group className={styles.form_group}>
+                    <Form.Label className={styles.label}>
+                        Description
+                    </Form.Label>
                     <Form.Control
                         placeholder="Write a long description of your project. You can describe your idea and approach here."
                         as="textarea"
@@ -99,12 +101,13 @@ const Newsubmission = () => {
                         name="description"
                     />
                 </Form.Group>
-                <Form.Group>
+                <Form.Group className={styles.form_group}>
                     Cover Image
+                    <br />
                     <br />
                     <Form.Label
                         htmlFor="upload-image"
-                        className="upload-image-label"
+                        className={styles.upload_image_label}
                     >
                         <RiImageAddLine />
                     </Form.Label>
@@ -113,14 +116,16 @@ const Newsubmission = () => {
                             type="file"
                             accept="image/*"
                             id="upload-image"
-                            className="upload-image"
+                            className={styles.upload_image}
                             onChange={imageupload}
                             name="image"
                         />
                     }
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Hackathon Name</Form.Label>
+                <Form.Group className={styles.form_group}>
+                    <Form.Label className={styles.label}>
+                        Hackathon Name
+                    </Form.Label>
                     <Form.Control
                         placeholder="Enter the name of the hackathon"
                         onChange={onchange}
@@ -128,9 +133,11 @@ const Newsubmission = () => {
                         name="hackathonName"
                     />
                 </Form.Group>
-                <div className="form-date">
-                    <Form.Group className="mb-3 ">
-                        <Form.Label>Hackathon Start Date</Form.Label>
+                <div className={styles.form_date}>
+                    <Form.Group className={styles.form_group}>
+                        <Form.Label className={styles.label}>
+                            Hackathon Start Date
+                        </Form.Label>
                         <Form.Control
                             type="date"
                             placeholder="Enter the name of the hackathon"
@@ -139,8 +146,10 @@ const Newsubmission = () => {
                             name="startdate"
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3 ">
-                        <Form.Label>Hackathon Start Date</Form.Label>
+                    <Form.Group className={styles.form_group}>
+                        <Form.Label className={styles.label}>
+                            Hackathon Start Date
+                        </Form.Label>
                         <Form.Control
                             type="date"
                             placeholder="Enter the name of the hackathon"
@@ -150,8 +159,10 @@ const Newsubmission = () => {
                         />
                     </Form.Group>
                 </div>
-                <Form.Group className="mb-3">
-                    <Form.Label>Github Repository</Form.Label>
+                <Form.Group className={styles.form_group}>
+                    <Form.Label className={styles.label}>
+                        Github Repository
+                    </Form.Label>
                     <Form.Control
                         placeholder="Enter your submission’s public GitHub repository link"
                         type="url"
@@ -160,8 +171,10 @@ const Newsubmission = () => {
                         name="repo"
                     />
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Other Links</Form.Label>
+                <Form.Group className={styles.form_group}>
+                    <Form.Label className={styles.label}>
+                        Other Links
+                    </Form.Label>
                     <Form.Control
                         placeholder="Enter your submission’s public GitHub repository link"
                         onChange={onchange}

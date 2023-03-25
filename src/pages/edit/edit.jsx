@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Container from "react-bootstrap/esm/Container";
 
-import "./index.css";
+import styles from "./index.module.css";
 
 import Form from "react-bootstrap/Form";
 import { RiImageAddLine } from "react-icons/ri";
@@ -57,11 +57,11 @@ const Edit = () => {
     }
 
     return (
-        <Container fluid={true} className="new-sub-cont">
-            <Form className="form" onSubmit={submit}>
-                <h3>New Hackathon Submission</h3>
+        <Container fluid={true} className={styles.edit_sub_cont}>
+            <Form className={styles.form} onSubmit={submit}>
+                <h3>Edit Submission</h3>
                 <br />
-                <Form.Group className="mb-3">
+                <Form.Group className={styles.form_group}>
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                         placeholder="Title of your submission"
@@ -71,7 +71,7 @@ const Edit = () => {
                         defaultValue={data.title || ""}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3">
+                <Form.Group className={styles.form_group}>
                     <Form.Label>Summary</Form.Label>
                     <Form.Control
                         placeholder="A short summary of your submission (this will be visible with your submission)"
@@ -83,7 +83,7 @@ const Edit = () => {
                         defaultValue={data.summary || ""}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3">
+                <Form.Group className={styles.form_group}>
                     <Form.Label>Description</Form.Label>
                     <Form.Control
                         placeholder="Write a long description of your project. You can describe your idea and approach here."
@@ -97,12 +97,12 @@ const Edit = () => {
                         defaultValue={data.description || ""}
                     />
                 </Form.Group>
-                <Form.Group>
+                <Form.Group className={styles.form_group}>
                     Cover Image
                     <br />
                     <Form.Label
                         htmlFor="upload-image"
-                        className="upload-image-label"
+                        className={styles.upload_image_label}
                     >
                         <RiImageAddLine />
                     </Form.Label>
@@ -111,13 +111,13 @@ const Edit = () => {
                             type="file"
                             accept="image/*"
                             id="upload-image"
-                            className="upload-image"
+                            className={styles.upload_image}
                             onChange={imageupload}
                             name="image"
                         />
                     }
                 </Form.Group>
-                <Form.Group className="mb-3">
+                <Form.Group className={styles.form_group}>
                     <Form.Label>Hackathon Name</Form.Label>
                     <Form.Control
                         placeholder="Enter the name of the hackathon"
@@ -127,8 +127,8 @@ const Edit = () => {
                         defaultValue={data.hackathonName || ""}
                     />
                 </Form.Group>
-                <div className="form-date">
-                    <Form.Group className="mb-3 ">
+                <div className={styles.form_date}>
+                    <Form.Group className={styles.form_group}>
                         <Form.Label>Hackathon Start Date</Form.Label>
                         <Form.Control
                             type="date"
@@ -139,7 +139,7 @@ const Edit = () => {
                             defaultValue={data.startdate || ""}
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3 ">
+                    <Form.Group className={styles.form_group}>
                         <Form.Label>Hackathon Start Date</Form.Label>
                         <Form.Control
                             type="date"
@@ -151,7 +151,7 @@ const Edit = () => {
                         />
                     </Form.Group>
                 </div>
-                <Form.Group className="mb-3">
+                <Form.Group className={styles.form_group}>
                     <Form.Label>Github Repository</Form.Label>
                     <Form.Control
                         placeholder="Enter your submission’s public GitHub repository link"
@@ -162,7 +162,7 @@ const Edit = () => {
                         defaultValue={data.repo || ""}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3">
+                <Form.Group className={styles.form_group}>
                     <Form.Label>Other Links</Form.Label>
                     <Form.Control
                         placeholder="Enter your submission’s public GitHub repository link"

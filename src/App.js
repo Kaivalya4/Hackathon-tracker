@@ -46,20 +46,11 @@ function App() {
         setfilter({ ...filter, sort: Number(e.target.value) });
     }
 
-    function newest(e) {
-        console.log(e);
-        setfilter({ ...filter, sort: 0 });
-    }
-
-    function oldest(e) {
-        setfilter({ ...filter, sort: 1 });
-    }
-
     return (
-        <div>
+        <div className="bg">
             <Container className="app-new-sub-container" fluid={true}>
                 <Row>
-                    <Col xs={8}>
+                    <Col xs={12} lg={8}>
                         <h1 className="new-sub-title">Hackathon Submissions</h1>
                         <br />
                         <p className="new-sub-descrip">

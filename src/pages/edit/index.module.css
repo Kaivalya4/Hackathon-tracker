@@ -7,7 +7,7 @@
     --color6: #cccccc;
 }
 
-.new-sub-cont {
+.edit_sub_cont {
     background-color: var(--color3);
     min-height: 100vh;
     padding: 5rem;
@@ -17,15 +17,24 @@
 
 .form {
     background-color: var(--color2);
-    padding: 1.25rem;
+    padding: 2rem;
     width: 900px;
 }
 
-.upload-image {
+.form_group {
+    margin-bottom: 1rem;
+}
+
+.image {
+    width: 120px;
+    height: 120px;
+}
+
+.upload_image {
     display: none;
 }
 
-.upload-image-label {
+.upload_image_label {
     background-color: var(--color3);
     display: flex;
     justify-content: center;
@@ -36,13 +45,35 @@
     font-size: 2rem;
     padding: 2rem;
     color: var(--color6);
+    cursor: pointer;
 }
 
-.form-date {
+.container-last {
+    display: flex;
+    align-items: center;
+}
+
+.form_date {
     display: flex;
     justify-content: space-between;
 }
 
-.form-date > * {
+.form_date > * {
     width: 45%;
+}
+
+@media screen and (max-width: 400px) {
+    .edit_sub_cont {
+        padding: 1rem;
+    }
+    .form {
+        width: 310px;
+        padding: 0.4rem;
+    }
+    .form_group {
+        width: 290px;
+    }
+    .form_date {
+        flex-direction: column;
+    }
 }

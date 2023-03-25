@@ -1,0 +1,92 @@
+:root {
+    --color1: #003145; /*app-new-sub-bg*/
+    --color2: white;
+    --color3: #f5f5f5;
+    --color4: #666666; /*celestial gray*/
+    --color5: #e3f2e5;
+    --color6: #333333;
+    --color7: #f8f9fd;
+    --color8: #222222;
+}
+
+.new_sub_cont {
+    background-color: var(--color7);
+    min-height: 100vh;
+    padding: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    background-color: var(--color2);
+    padding: 1.25rem;
+    width: 913px;
+}
+
+.h3 {
+    font-weight: 500;
+    color: var(--color8);
+}
+
+.form_group {
+    margin-bottom: 1rem;
+}
+
+.label {
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--color8);
+}
+
+.image {
+    width: 120px;
+    height: 120px;
+}
+
+.upload_image {
+    display: none;
+}
+
+.upload_image_label {
+    background-color: var(--color3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed var(--color6);
+    width: 90%;
+    height: 40px;
+    font-size: 2rem;
+    padding: 2rem;
+    color: var(--color6);
+    cursor: pointer;
+}
+
+.container-last {
+    display: flex;
+    align-items: center;
+}
+
+.form_date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form_date > * {
+    width: 45%;
+}
+
+@media screen and (max-width: 400px) {
+    .edit_sub_cont {
+        padding: 1rem;
+    }
+    .form {
+        width: 310px;
+        padding: 0.4rem;
+    }
+    .form_group {
+        width: 290px;
+    }
+    .form_date {
+        flex-direction: column;
+    }
+}

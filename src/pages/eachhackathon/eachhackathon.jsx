@@ -7,32 +7,25 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-import { AiFillStar, AiOutlineStar, AiTwotoneCalendar } from "react-icons/ai";
+import {
+    AiFillGithub,
+    AiFillStar,
+    AiOutlineStar,
+    AiTwotoneCalendar,
+} from "react-icons/ai";
+import { MdEdit, MdDelete } from "react-icons/md";
+import { TbExternalLink } from "react-icons/tb";
 
-import "./index.css";
+import getdate from "../../utils/getdate";
+
+import styles from "./index.module.css";
 
 const Eachhackathon = () => {
     const { id } = useParams();
     const [data, setdata] = useState(JSON.parse(localStorage.getItem(id)));
 
-    const strdate1 = data.startdate;
-    const strdate2 = data.enddate;
-
-    const date1 = new Date(
-        strdate1.substring(5, 7) +
-            "/" +
-            strdate1.substring(8, 10) +
-            "/" +
-            strdate1.substring(0, 4)
-    );
-
-    const date2 = new Date(
-        strdate2.substring(5, 7) +
-            "/" +
-            strdate2.substring(8, 10) +
-            "/" +
-            strdate2.substring(0, 4)
-    );
+    const date1 = getdate(data.startdate);
+    const date2 = getdate(data.enddate);
 
     /**favourites */
     function changefav(e) {
@@ -53,21 +46,40 @@ const Eachhackathon = () => {
         navigate("/");
     }
 
+    /*edit redirect */
+    function handleedit(e) {
+        navigate(`/edit/${id}`);
+    }
+
     return (
         <div>
-            <Container className="app-new-sub-container" fluid={true}>
-                <Row>
-                    <Col xs={2}>
-                        <img src={data.image} alt="" className="image" />
+            <Container className={styles.app_new_sub_container} fluid={true}>
+                <Row className={styles.app_new_sub_container_row1}>
+                    <Col sm={4} lg={2}>
+                        <img src={data.image} alt="" className={styles.image} />
                     </Col>
-                    <Col xs={8}>hello</Col>
-                    <Col>
-                        <Link to={`/edit/${id}`}>
-                            <Button>Edit</Button>
-                        </Link>
+                    <Col sm={6} lg={8}>
+                        <h1>{data.title}</h1>
+                    </Col>
+                    <Col sm={2}>
+                        <Button
+                            variant="Light"
+                            onClick={handleedit}
+                            className={styles.cust_button}
+                        >
+                            <MdEdit />
+                            Edit
+                        </Button>
                         <br />
                         <br />
-                        <Button onClick={handleShow}>Delete</Button>
+                        <Button
+                            onClick={handleShow}
+                            variant="Light"
+                            className={styles.cust_button}
+                        >
+                            <MdDelete />
+                            Delete
+                        </Button>
                     </Col>
                 </Row>
                 <br />
@@ -75,12 +87,12 @@ const Eachhackathon = () => {
                     <Col>{data.summary}</Col>
                 </Row>
                 <br />
-                <div className="container-last">
+                <div className={styles.container_last}>
                     <div onClick={changefav} style={{ cursor: "pointer" }}>
                         {!data.isfav ? <AiOutlineStar /> : <AiFillStar />}
                     </div>
                     &nbsp; | &nbsp;
-                    <div className="date">
+                    <div className={styles.date}>
                         <AiTwotoneCalendar />
                         &nbsp;&nbsp;
                         {date1.getDate()}
@@ -95,12 +107,14 @@ const Eachhackathon = () => {
                     <Col sm={8}>
                         <h4>Description</h4>
                         <br />
-                        <p>{data.description}</p>
+                        <p className={styles.descrip_para}>
+                            {data.description}
+                        </p>
                     </Col>
                     <Col>
-                        <h5>Hackathon</h5>
+                        <h5 className={styles.hackathon_title}>Hackathon</h5>
                         <h4>{data.hackathonName}</h4>
-                        <div className="date">
+                        <div className={styles.hackathon_date}>
                             <AiTwotoneCalendar />
                             &nbsp;
                             {date1.getDate()}
@@ -110,6 +124,21 @@ const Eachhackathon = () => {
                             &nbsp;
                             {date2.toLocaleString("default", { month: "long" })}
                         </div>
+                        <br />
+                        <br />
+                        <Link to={data.repo} className={styles.link}>
+                            <div className={styles.hackathon_repo}>
+                                <AiFillGithub />
+                                &nbsp; Github Repository
+                            </div>
+                        </Link>
+                        <br />
+                        <Link to={data.link} className={styles.link}>
+                            <div className={styles.hackathon_repo}>
+                                <TbExternalLink />
+                                Other Link
+                            </div>
+                        </Link>
                     </Col>
                 </Row>
             </Container>

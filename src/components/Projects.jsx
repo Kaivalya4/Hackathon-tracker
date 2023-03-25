@@ -1,6 +1,7 @@
-import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import Onerow from "./Onerow";
+
+import getdate from "../utils/getdate";
 
 const Projects = ({ filter }) => {
     let values = [];
@@ -14,17 +15,6 @@ const Projects = ({ filter }) => {
         values.push({ ...temp, id: keys[i] });
     }
 
-    function getdate(strdate2) {
-        let tempdate = new Date(
-            strdate2.substring(5, 7) +
-                "/" +
-                strdate2.substring(8, 10) +
-                "/" +
-                strdate2.substring(0, 4)
-        );
-        return tempdate.getTime();
-    }
-
     function applyfilter(values, filter) {
         const temp = values.filter((value) => {
             return (
@@ -33,8 +23,8 @@ const Projects = ({ filter }) => {
             );
         });
         temp.sort((a, b) => {
-            const atime = getdate(a.startdate);
-            const btime = getdate(b.startdate);
+            const atime = getdate(a.startdate).getTime();
+            const btime = getdate(b.startdate).getTime();
             if (filter.sort) return atime - btime;
             return btime - atime;
         });
