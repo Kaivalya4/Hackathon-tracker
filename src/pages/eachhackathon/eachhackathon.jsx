@@ -126,14 +126,22 @@ const Eachhackathon = () => {
                         </div>
                         <br />
                         <br />
-                        <Link to={data.repo} className={styles.link}>
+                        <Link
+                            to={data.repo}
+                            target="_blank"
+                            className={styles.link}
+                        >
                             <div className={styles.hackathon_repo}>
                                 <AiFillGithub />
                                 &nbsp; Github Repository
                             </div>
                         </Link>
                         <br />
-                        <Link to={data.link} className={styles.link}>
+                        <Link
+                            to={data.link}
+                            target="_blank"
+                            className={styles.link}
+                        >
                             <div className={styles.hackathon_repo}>
                                 <TbExternalLink />
                                 Other Link
