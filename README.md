@@ -1,9 +1,10 @@
-## Hackathon Tracker
+## Hackathon Tracker 📊
   link :link: : <a>https://hackathon-tracker.onrender.com/ </a>
   
-  - :book: Add the details of the hackathon submissions : title , summary , description , cover image etc .
-  - :cover: Hackathon will be added to home page
-  - Filter the hackathon according to your requirement : all submissions , favourite submissions , search for titie etc.
+  #### 👨‍💻
+  -  Add the details of the hackathon submissions : title , summary , description , cover image etc .
+  -  Hackathon will be added to home  page
+  - Filter  the hackathon according to your requirement : all submissions , favourite submissions , search for titie etc.
   - Click on each hackathon to see the details : Edit it , delete it or mark it as favourite .
   
 ## Tech used :computer:
