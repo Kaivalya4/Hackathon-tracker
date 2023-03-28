@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 
 import Container from "react-bootstrap/esm/Container";
+import Modal from "react-bootstrap/Modal";
 
 import styles from "./index.module.css";
 
 import Form from "react-bootstrap/Form";
 import { RiImageAddLine } from "react-icons/ri";
 import Button from "react-bootstrap/esm/Button";
+import { MdCloudUpload } from "react-icons/md";
+import { AiTwotoneCalendar } from "react-icons/ai";
 
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import getdate from "../../utils/getdate";
 
 const Newsubmission = () => {
     const navigate = useNavigate();
+    const [charcnt, setcharcnt] = useState(0);
+    const [showcal1, setshowcal1] = useState(1);
+    const [showcal2, setshowcal2] = useState(1);
+    const [show, setShow] = useState(false);
 
     ///usestate and setstate both are async
     const [formdata, setformdata] = useState({
@@ -20,6 +28,7 @@ const Newsubmission = () => {
         summary: "",
         description: "",
         image: "",
+        imageName: "",
         hackathonName: "",
         startdate: "",
         enddate: "",
@@ -28,17 +37,29 @@ const Newsubmission = () => {
         isfav: 0,
     });
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     function onchange(e) {
         setformdata((previousvalue) => ({
             ...previousvalue,
             [e.target.name]: e.target.value,
         }));
+        if (e.target.name === "description") {
+            setcharcnt(e.target.value.length);
+        }
     }
 
     function submit(e) {
         e.preventDefault();
-        localStorage.setItem(uuidv4(), JSON.stringify(formdata));
-        navigate("/");
+        let datadate = getdate(formdata.startdate).getTime();
+        let currdate = new Date();
+        if (datadate - currdate.getTime() > 0) {
+            handleShow();
+        } else {
+            localStorage.setItem(uuidv4(), JSON.stringify(formdata));
+            navigate("/");
+        }
     }
 
     function getBase64(file) {
@@ -56,16 +77,38 @@ const Newsubmission = () => {
             setformdata((previousvalue) => ({
                 ...previousvalue,
                 [e.target.name]: base64,
+                imageName: e.target.value.substring(
+                    e.target.value.lastIndexOf("\\") + 1
+                ),
             }));
             console.debug("file stored", base64);
         });
+    }
+
+    function ondateFocus1(e) {
+        e.target.type = "date";
+        setshowcal1(0);
+    }
+
+    function ondateBlur1(e) {
+        e.target.type = "text";
+        setshowcal1(1);
+    }
+
+    function ondateFocus2(e) {
+        e.target.type = "date";
+        setshowcal2(0);
+    }
+
+    function ondateBlur2(e) {
+        e.target.type = "text";
+        setshowcal2(1);
     }
 
     return (
         <Container fluid={true} className={styles.new_sub_cont}>
             <Form className={styles.form} onSubmit={submit}>
                 <h3 className={styles.h3}>New Hackathon Submission</h3>
-                <br />
                 <Form.Group className={styles.form_group}>
                     <Form.Label className={styles.label}>Title</Form.Label>
                     <Form.Control
@@ -99,28 +142,53 @@ const Newsubmission = () => {
                         onChange={onchange}
                         required={true}
                         name="description"
+                        className={styles.descrip}
                     />
+                    <div className={styles.descrip_limit}>
+                        {charcnt}/3000 characters
+                    </div>
                 </Form.Group>
                 <Form.Group className={styles.form_group}>
-                    Cover Image
+                    <span>Cover Image</span>
                     <br />
-                    <br />
-                    <Form.Label
-                        htmlFor="upload-image"
-                        className={styles.upload_image_label}
-                    >
-                        <RiImageAddLine />
-                    </Form.Label>
-                    {
-                        <Form.Control
-                            type="file"
-                            accept="image/*"
-                            id="upload-image"
-                            className={styles.upload_image}
-                            onChange={imageupload}
-                            name="image"
-                        />
-                    }
+                    <span className={styles.image_reso}>
+                        Minimum resolution : 360px &times; 360px
+                    </span>
+                    {formdata.image.toString().length ? (
+                        <Form.Label
+                            htmlFor="upload-image"
+                            className={styles.uploaded_image_label}
+                        >
+                            <div>
+                                <img
+                                    src={formdata.image || ""}
+                                    alt=""
+                                    className={styles.uploaded_image}
+                                />
+                                &nbsp;
+                                {formdata.imageName}
+                            </div>
+                            <div>
+                                Reupload &nbsp;
+                                <MdCloudUpload />
+                            </div>
+                        </Form.Label>
+                    ) : (
+                        <Form.Label
+                            htmlFor="upload-image"
+                            className={styles.upload_image_label}
+                        >
+                            <RiImageAddLine />
+                        </Form.Label>
+                    )}
+                    <Form.Control
+                        type="file"
+                        accept="image/*"
+                        id="upload-image"
+                        className={styles.upload_image}
+                        onChange={imageupload}
+                        name="image"
+                    />
                 </Form.Group>
                 <Form.Group className={styles.form_group}>
                     <Form.Label className={styles.label}>
@@ -138,25 +206,37 @@ const Newsubmission = () => {
                         <Form.Label className={styles.label}>
                             Hackathon Start Date
                         </Form.Label>
-                        <Form.Control
-                            type="date"
-                            placeholder="Enter the name of the hackathon"
-                            onChange={onchange}
-                            required={true}
-                            name="startdate"
-                        />
+                        <div className={styles.date_container}>
+                            <Form.Control
+                                type="text"
+                                placeholder="Select start date"
+                                onChange={onchange}
+                                required={true}
+                                name="startdate"
+                                onFocus={ondateFocus1}
+                                onBlur={ondateBlur1}
+                                className={styles.date}
+                            />
+                            {showcal1 ? <AiTwotoneCalendar /> : ""}
+                        </div>
                     </Form.Group>
                     <Form.Group className={styles.form_group}>
                         <Form.Label className={styles.label}>
-                            Hackathon Start Date
+                            Hackathon End Date
                         </Form.Label>
-                        <Form.Control
-                            type="date"
-                            placeholder="Enter the name of the hackathon"
-                            onChange={onchange}
-                            required={true}
-                            name="enddate"
-                        />
+                        <div className={styles.date_container}>
+                            <Form.Control
+                                type="text"
+                                placeholder="Select end date"
+                                onChange={onchange}
+                                required={true}
+                                name="enddate"
+                                onFocus={ondateFocus2}
+                                onBlur={ondateBlur2}
+                                className={styles.date}
+                            />
+                            {showcal2 ? <AiTwotoneCalendar /> : ""}
+                        </div>
                     </Form.Group>
                 </div>
                 <Form.Group className={styles.form_group}>
@@ -178,14 +258,28 @@ const Newsubmission = () => {
                     <Form.Control
                         placeholder="Enter your submission’s public GitHub repository link"
                         onChange={onchange}
-                        required={true}
                         name="link"
                     />
                 </Form.Group>
-                <Button variant="success" type="submit">
-                    Uppload Submission
+                <Button
+                    variant="success"
+                    type="submit"
+                    className={styles.submit}
+                >
+                    Upload Submission
                 </Button>
             </Form>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Body>
+                    Start Date can not be more than current date !!!!
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={handleClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Container>
     );
 };

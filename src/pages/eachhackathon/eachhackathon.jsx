@@ -137,16 +137,20 @@ const Eachhackathon = () => {
                             </div>
                         </Link>
                         <br />
-                        <Link
-                            to={data.link}
-                            target="_blank"
-                            className={styles.link}
-                        >
-                            <div className={styles.hackathon_repo}>
-                                <TbExternalLink />
-                                Other Link
-                            </div>
-                        </Link>
+                        {data.link.toString().length ? (
+                            <Link
+                                to={data.link}
+                                target="_blank"
+                                className={styles.link}
+                            >
+                                <div className={styles.hackathon_repo}>
+                                    <TbExternalLink />
+                                    Other Link
+                                </div>
+                            </Link>
+                        ) : (
+                            ""
+                        )}
                     </Col>
                 </Row>
             </Container>

@@ -4,25 +4,30 @@
     --color3: #f5f5f5;
     --color4: #666666; /*celestial gray*/
     --color5: #e3f2e5;
-    --color6: #cccccc;
+    --color6: #333333;
+    --color7: #f8f9fd;
+    --color8: #255973;
+    --color9: #858585;
+    --color10: #cccccc;
 }
 
 .edit_sub_cont {
-    background-color: var(--color3);
+    background-color: var(--color7);
     min-height: 100vh;
-    padding: 5rem;
+    padding-top: 5rem;
+    padding-left: 10rem;
     display: flex;
-    justify-content: center;
 }
 
 .form {
     background-color: var(--color2);
-    padding: 2rem;
-    width: 900px;
-}
-
-.form_group {
-    margin-bottom: 1rem;
+    padding: 1.25rem;
+    padding-left: 2rem;
+    padding-right: 10rem;
+    width: 913px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .image {
@@ -30,8 +35,29 @@
     height: 120px;
 }
 
+.descrip {
+    resize: none;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    overflow: -moz-scrollbars-none;
+}
+
+.descrip::-webkit-scrollbar {
+    width: 0;
+}
+
+.descrip_limit {
+    width: 100%;
+    text-align: right;
+    font-size: 0.75rem;
+}
+
 .upload_image {
     display: none;
+}
+
+.image_reso {
+    color: var(--color4);
 }
 
 .upload_image_label {
@@ -39,13 +65,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px dashed var(--color6);
-    width: 90%;
+    border: 4px dashed var(--color6);
+    border-radius: 16px;
+    width: 100%;
     height: 40px;
     font-size: 2rem;
+    margin-top: 0.5rem;
     padding: 2rem;
     color: var(--color6);
     cursor: pointer;
+}
+
+.uploaded_image {
+    width: 48px;
+    height: 48px;
+}
+
+.uploaded_image_label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    color: var(--color4);
+    background-color: var(--color7);
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 17px;
+    align-items: center;
 }
 
 .container-last {
@@ -62,18 +107,48 @@
     width: 45%;
 }
 
-@media screen and (max-width: 400px) {
-    .edit_sub_cont {
-        padding: 1rem;
-    }
+.date_container {
+    border: 1px solid var(--color10);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-right: 0.5rem;
+    font-size: 17px;
+    color: var(--color4);
+}
+
+.date {
+    border: none;
+    outline: none;
+}
+
+.date:focus,
+.date:active {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.submit {
+    width: max-content;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+}
+
+@media screen and (max-width: 500px) {
     .form {
         width: 310px;
-        padding: 0.4rem;
+        padding: 0.2rem 0.2rem 0.2rem 0.2rem;
     }
     .form_group {
         width: 290px;
     }
     .form_date {
         flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .edit_sub_cont {
+        padding-left: 1rem;
     }
 }

@@ -10,7 +10,7 @@ const Eachproject = ({ values }) => {
     const date = new Date();
     const date2 = getdate(values.startdate);
 
-    const datetoshow = Math.round(
+    const datetoshow = Math.floor(
         (date.getTime() - date2.getTime()) / (1000 * 3600 * 24)
     );
 
@@ -19,7 +19,7 @@ const Eachproject = ({ values }) => {
     }
 
     return (
-        <Col>
+        <Col xs={12} sm={8} lg={4}>
             <Card className="hackathon-card" onClick={redirect}>
                 <div className="card-row-1">
                     <img src={values.image} alt="" className="card-image" />
@@ -27,7 +27,7 @@ const Eachproject = ({ values }) => {
                 </div>
                 <br />
                 <p className="card-summary">{values.summary}</p>
-                <div className="card-date">uploaded {datetoshow} ago</div>
+                <div className="card-date">uploaded {datetoshow} days ago</div>
             </Card>
             <br />
         </Col>
