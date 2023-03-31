@@ -21,6 +21,7 @@ const Newsubmission = () => {
     const [showcal1, setshowcal1] = useState(1);
     const [showcal2, setshowcal2] = useState(1);
     const [show, setShow] = useState(false);
+    const [textareaheight, setTextareaheight] = useState(4);
 
     ///usestate and setstate both are async
     const [formdata, setformdata] = useState({
@@ -47,6 +48,17 @@ const Newsubmission = () => {
         }));
         if (e.target.name === "description") {
             setcharcnt(e.target.value.length);
+        }
+    }
+
+    function descripchange(e) {
+        onchange(e);
+        const height = e.target.scrollHeight;
+        const rowHeight = 24;
+        const trows = Math.ceil(height / rowHeight) - 1;
+
+        if (trows > textareaheight) {
+            setTextareaheight(trows);
         }
     }
 
@@ -138,8 +150,8 @@ const Newsubmission = () => {
                         as="textarea"
                         maxLength={3000}
                         minLength={10}
-                        rows={3}
-                        onChange={onchange}
+                        rows={textareaheight}
+                        onChange={descripchange}
                         required={true}
                         name="description"
                         className={styles.descrip}

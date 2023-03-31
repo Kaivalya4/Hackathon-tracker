@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 :root {
     --color1: #003145; /*app-new-sub-bg*/
@@ -11,10 +11,23 @@
     --color8: #255973;
     --color9: #858585;
     --color10: #cccccc;
+    --color11: #44924c;
+    --color12: #e3f2e5;
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .bg {
     background-color: var(--color7);
+}
+
+.ai-planet {
+    padding: 0.5rem;
+    padding-left: 8rem;
 }
 
 .app-new-sub-container {
@@ -22,11 +35,12 @@
     font-family: "Poppins";
     max-height: 800px;
     background-color: var(--color1);
-    padding: 4rem;
+    padding: 0 8rem 4rem 8rem;
 }
 
 .new-sub-title {
     font-weight: 600;
+    margin-top: 5rem;
 }
 
 .new-sub-descrip {
@@ -34,46 +48,66 @@
     font-size: 17px;
 }
 
+.upload-btn {
+    padding: 12px 18px;
+    width: 194px;
+    height: 52px;
+    background: #44924c;
+    color: var(--color2);
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+}
+
 .light-bulb {
+    margin-top: 3rem;
     height: 300px;
     width: 200px;
+    float: right;
 }
 
 .filter {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin: 0 8rem 0 8rem;
+}
+
+.filter-first {
+    font-size: 17px;
+    font-weight: 500;
 }
 
 .filter-first,
 .filter-second {
     display: flex;
-    gap: 32px;
-    justify-content: space-evenly;
+    gap: 36px;
 }
 
 .all,
 .fav {
     padding: 0 1.5rem 0 1.5rem;
     cursor: pointer;
+    color: var(--color4);
 }
 
 .all-active,
 .fav-active {
-    border-bottom: 4px solid green;
+    border-bottom: 4px solid var(--color11);
+    color: var(--color6);
 }
 
 .search {
-    border-radius: 40px;
+    width: 300px;
+    height: 40px;
+    border-radius: 100px;
     border: 1px solid var(--color4);
-    width: 225px;
-    padding-left: 8px;
     display: flex;
+    gap: 8px;
+    padding: 16px;
     align-items: center;
-    gap: 3px;
-}
-
-.search__icon {
-    color: var(--color4);
+    flex-grow: 0;
+    font-size: 17px;
+    color: var(--color6);
 }
 
 .search__input {
@@ -83,14 +117,70 @@
     background-color: var(--color7);
 }
 
+.dropdown {
+    width: 140px;
+    height: 40px;
+}
+
 .search__select {
-    width: 100px;
+    position: absolute;
+    width: 140px;
+    height: 40px;
+    padding: 16px;
+    align-items: center;
+    border-radius: 100px;
+    border: 1px solid var(--color4);
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 0;
     background-color: var(--color7);
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--color4);
+}
+
+.select__content {
+    display: none;
+}
+
+.select__content-active {
+    display: block;
+    top: 110%;
+    position: relative;
+    background-color: var(--color2);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    width: 140px;
+    height: 80px;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--color6);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    height: 50%;
+    padding: 16px;
+}
+
+.options:hover {
+    background: var(--color12);
+}
+
+.sub-row,
+.sub-col {
+    padding: 0;
+    margin: 0;
 }
 
 .hackathon-card {
     max-width: 360px;
-    padding: 2rem;
+    height: 289px;
+    padding: 24px;
     border-radius: 16px;
     border: none;
     box-shadow: 0px 3px 24px rgba(132, 132, 132, 0.16),
@@ -101,21 +191,29 @@
 .card-row-1 {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
+    font-weight: 500;
+    font-size: 20px;
 }
 
 .card-image {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
 }
 
 .card-summary {
+    font-family: Inter;
     font-weight: 400;
     color: var(--color6);
     font-size: 16px;
 }
 
 .card-date {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    font-family: Inter;
     text-align: right;
     font-weight: 400;
     color: var(--color4);
@@ -123,7 +221,10 @@
 }
 
 /*Media queries*/
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1000px) {
+    .app-new-sub-container {
+        padding: 1rem;
+    }
     .light-bulb {
         display: none;
     }
@@ -137,6 +238,16 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 1rem;
+        margin: 0.75rem;
+    }
+    .filter-first > * {
+        width: 250px;
+        text-align: center;
+    }
+    .sub-row {
+        padding: 0px;
+    }
+    .sub-col {
+        padding: 0px;
     }
 }

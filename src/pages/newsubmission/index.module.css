@@ -32,13 +32,13 @@
 
 .h3 {
     font-weight: 500;
-    color: var(--color8);
+    color: var(--color6);
 }
 
 .label {
     font-weight: 400;
     font-size: 17px;
-    color: var(--color8);
+    color: var(--color6);
 }
 
 .image {
@@ -51,6 +51,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     overflow: -moz-scrollbars-none;
+    min-height: 30px;
 }
 
 .descrip::-webkit-scrollbar {
@@ -131,6 +132,13 @@
 .date {
     border: none;
     outline: none;
+}
+
+.date::-webkit-inner-spin-button,
+.date::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+    opacity: 0;
 }
 
 .date:focus,

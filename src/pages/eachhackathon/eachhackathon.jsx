@@ -15,6 +15,7 @@ import {
 } from "react-icons/ai";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { TbExternalLink } from "react-icons/tb";
+import { RxDividerVertical } from "react-icons/rx";
 
 import getdate from "../../utils/getdate";
 
@@ -82,7 +83,6 @@ const Eachhackathon = () => {
                         </Button>
                     </Col>
                 </Row>
-                <br />
                 <Row>
                     <Col>{data.summary}</Col>
                 </Row>
@@ -91,11 +91,12 @@ const Eachhackathon = () => {
                     <div onClick={changefav} style={{ cursor: "pointer" }}>
                         {!data.isfav ? <AiOutlineStar /> : <AiFillStar />}
                     </div>
-                    &nbsp; | &nbsp;
+                    &nbsp; <RxDividerVertical className={styles.line} /> &nbsp;
                     <div className={styles.date}>
                         <AiTwotoneCalendar />
                         &nbsp;&nbsp;
                         {date1.getDate()}
+                        &nbsp;
                         {date1.toLocaleString("default", { month: "long" })}
                     </div>
                 </div>
@@ -104,15 +105,17 @@ const Eachhackathon = () => {
             <br />
             <Container>
                 <Row>
-                    <Col sm={8}>
+                    <Col sm={8} className={styles.descrip_col}>
                         <h4>Description</h4>
                         <br />
                         <p className={styles.descrip_para}>
                             {data.description}
                         </p>
+                        <br />
                     </Col>
-                    <Col>
+                    <Col sm={3}>
                         <h5 className={styles.hackathon_title}>Hackathon</h5>
+                        <br />
                         <h4>{data.hackathonName}</h4>
                         <div className={styles.hackathon_date}>
                             <AiTwotoneCalendar />
@@ -120,9 +123,14 @@ const Eachhackathon = () => {
                             {date1.getDate()}
                             &nbsp;
                             {date1.toLocaleString("default", { month: "long" })}
-                            &nbsp; - &nbsp; {date2.getDate()}
+                            &nbsp;
+                            {date1.getFullYear()}
+                            &nbsp; - &nbsp;
+                            {date2.getDate()}
                             &nbsp;
                             {date2.toLocaleString("default", { month: "long" })}
+                            &nbsp;
+                            {date1.getFullYear()}
                         </div>
                         <br />
                         <br />

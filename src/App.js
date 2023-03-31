@@ -8,10 +8,14 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 import { AiOutlineSearch } from "react-icons/ai";
+import { MdArrowDropDown } from "react-icons/md";
 import Projects from "./components/Projects";
 import { useState } from "react";
 
 function App() {
+    const [dropdown, setdropdown] = useState(0);
+    const [option, setoption] = useState("Newest");
+
     const [filter, setfilter] = useState({
         toshow: 0,
         search: "",
@@ -41,9 +45,18 @@ function App() {
     }
 
     /*sorting */
+    function openDropdown() {
+        setdropdown(dropdown ^ 1);
+    }
 
-    function handlesort(e) {
-        setfilter({ ...filter, sort: Number(e.target.value) });
+    function selectcontent() {
+        return dropdown ? "select__content-active" : "select__content";
+    }
+
+    function handlesort(name, value) {
+        setoption(name);
+        setfilter({ ...filter, sort: Number(value) });
+        setdropdown(dropdown ^ 1);
     }
 
     return (
@@ -54,20 +67,20 @@ function App() {
                         <h1 className="new-sub-title">Hackathon Submissions</h1>
                         <br />
                         <p className="new-sub-descrip">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Dignissimos odit accusamus temporibus fuga!
-                            Fugiat amet, error eum iusto est, ipsam velit nemo
-                            iure eaque voluptatibus quidem, animi non ut aut
-                            similique quia. Beatae facilis necessitatibus
-                            voluptate aliquam officia illo sequi, animi et, a id
-                            neque, harum ex sint eaque in.
+                            Lorem ipsum dolor sit amet consectetur. Urna cursus
+                            amet pellentesque in parturient purus feugiat
+                            faucibus. Congue laoreet duis porta turpis eget
+                            suspendisse ac pharetra amet. Vel nisl tempus nec
+                            vitae.
                         </p>
                         <br />
                         <Link to="newsub">
-                            <Button variant="success">New Submission</Button>
+                            <button className="upload-btn">
+                                Upload Submission
+                            </button>
                         </Link>
                     </Col>
-                    <Col>
+                    <Col className="light-bulb-col">
                         <img
                             src={require("./assets/Hand holding bulb 3D.png")}
                             alt=""
@@ -99,8 +112,8 @@ function App() {
                             onChange={handlesearch}
                         />
                     </form>
-                    <Form.Select
-                        aria-label="Default select example"
+                    {/* <Form.Select
+                        // aria-label="Default select example"
                         className="search__select"
                         onClick={handlesort}
                     >
@@ -110,7 +123,26 @@ function App() {
                         <option value="1" className="options">
                             Oldest
                         </option>
-                    </Form.Select>
+                    </Form.Select> */}
+                    <div className="dropdown">
+                        <div className="search__select" onClick={openDropdown}>
+                            {option} <MdArrowDropDown />
+                        </div>
+                        <div className={selectcontent()}>
+                            <div
+                                className="options"
+                                onClick={() => handlesort("Newest", 0)}
+                            >
+                                Newest
+                            </div>
+                            <div
+                                className="options"
+                                onClick={() => handlesort("Oldest", 1)}
+                            >
+                                Oldest
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <Projects filter={filter} />

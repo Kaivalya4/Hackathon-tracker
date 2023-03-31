@@ -132,7 +132,7 @@ const Edit = () => {
                         as="textarea"
                         maxLength={3000}
                         minLength={10}
-                        rows={3}
+                        rows={4}
                         onChange={onchange}
                         required={true}
                         name="description"
