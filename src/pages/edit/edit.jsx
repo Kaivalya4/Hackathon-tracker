@@ -25,7 +25,6 @@ const Edit = () => {
 
     const [charcnt, setcharcnt] = useState(data.description.toString().length);
 
-    ///usestate and setstate both are async
     const [formdata, setformdata] = useState({
         ...data,
         isfav: data.isfav,
@@ -47,8 +46,9 @@ const Edit = () => {
     function submit(e) {
         e.preventDefault();
         let datadate = getdate(formdata.startdate).getTime();
+        let enddate = getdate(formdata.enddate).getTime();
         let currdate = new Date();
-        if (datadate - currdate.getTime() > 0) {
+        if (datadate - currdate.getTime() > 0 || datadate > enddate) {
             handleShow();
         } else {
             localStorage.setItem(id, JSON.stringify(formdata));
@@ -265,7 +265,8 @@ const Edit = () => {
             </Form>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Body>
-                    Start Date can not be more than current date !!!!
+                    Start Date can not be more than current date and end date
+                    !!!!
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={handleClose}>

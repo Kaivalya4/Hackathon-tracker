@@ -25,6 +25,7 @@ const Projects = ({ filter }) => {
         temp.sort((a, b) => {
             const atime = getdate(a.startdate).getTime();
             const btime = getdate(b.startdate).getTime();
+
             if (filter.sort) return atime - btime;
             return btime - atime;
         });

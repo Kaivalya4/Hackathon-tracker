@@ -17,10 +17,10 @@ import getdate from "../../utils/getdate";
 
 const Newsubmission = () => {
     const navigate = useNavigate();
-    const [charcnt, setcharcnt] = useState(0);
-    const [showcal1, setshowcal1] = useState(1);
-    const [showcal2, setshowcal2] = useState(1);
-    const [show, setShow] = useState(false);
+    const [charcnt, setcharcnt] = useState(0); //textarea char cnt
+    const [showcal1, setshowcal1] = useState(1); //calender1
+    const [showcal2, setshowcal2] = useState(1); //calender2
+    const [show, setShow] = useState(false); //modal
     const [textareaheight, setTextareaheight] = useState(4);
 
     ///usestate and setstate both are async
@@ -65,8 +65,9 @@ const Newsubmission = () => {
     function submit(e) {
         e.preventDefault();
         let datadate = getdate(formdata.startdate).getTime();
+        let enddate = getdate(formdata.enddate).getTime();
         let currdate = new Date();
-        if (datadate - currdate.getTime() > 0) {
+        if (datadate - currdate.getTime() > 0 || datadate > enddate) {
             handleShow();
         } else {
             localStorage.setItem(uuidv4(), JSON.stringify(formdata));
@@ -284,7 +285,8 @@ const Newsubmission = () => {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Body>
-                    Start Date can not be more than current date !!!!
+                    Start Date can not be more than current date and end
+                    date!!!!
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={handleClose}>
