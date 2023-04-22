@@ -21,6 +21,10 @@
     padding: 4rem 8rem 4rem 8rem;
 }
 
+.h1style {
+    text-align: left;
+}
+
 .image {
     width: 120px;
     height: 120px;

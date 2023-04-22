@@ -60,7 +60,11 @@ const Eachhackathon = () => {
                         <img src={data.image} alt="" className={styles.image} />
                     </Col>
                     <Col sm={6} lg={8}>
-                        <h1>{data.title}</h1>
+                        <h1 className={styles.h1style}>
+                            {data.title.length > 30
+                                ? data.title.toString().substring(0, 30) + "..."
+                                : data.title}
+                        </h1>
                     </Col>
                     <Col sm={2}>
                         <Button
