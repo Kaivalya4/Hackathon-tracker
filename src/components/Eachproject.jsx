@@ -23,7 +23,7 @@ const Eachproject = ({ values }) => {
             <Card className="hackathon-card" onClick={redirect}>
                 <div className="card-row-1">
                     <img src={values.image} alt="" className="card-image" />
-                    <h4>
+                    <h4 className="temp-1">
                         {values.title.length > 25
                             ? values.title.toString().substring(0, 25) + "..."
                             : values.title}

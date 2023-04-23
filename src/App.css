@@ -220,6 +220,10 @@ body {
     font-size: 14px;
 }
 
+.temp-1 {
+    word-break: break-all;
+}
+
 /*Media queries*/
 @media screen and (max-width: 1000px) {
     .app-new-sub-container {
